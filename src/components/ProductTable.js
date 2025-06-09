@@ -2,36 +2,34 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import './ProductTable.css';
 
-export default function ProductTable() {
-  const products = useSelector((state) => state.product.items);
+function ProductTable() {
+  const products = useSelector((state) => state.products);
 
   return (
-    <div className="product-table">
+    <div className="product-table-container">
       <h2>Product List</h2>
-      {products.length === 0 ? (
-        <p>No products added yet.</p>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Category</th>
+      <table className="product-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Image</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((product) => (
+            <tr key={product.id}>
+              <td>{product.name}</td>
+              <td>₹{product.price}</td>
+              <td>{product.category}</td>
+              <td><img src={product.image} alt="Product" className="thumbnail" /></td>
             </tr>
-          </thead>
-          <tbody>
-            {products.map((p, index) => (
-              <tr key={index}>
-                <td><img src={p.image} alt={p.name} /></td>
-                <td>{p.name}</td>
-                <td>₹{p.price}</td>
-                <td>{p.category}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
+
+export default ProductTable;
