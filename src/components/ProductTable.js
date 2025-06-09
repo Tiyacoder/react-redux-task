@@ -1,37 +1,37 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import './ProductTable.css';
 
-const ProductTable = () => {
-  const products = useSelector((state) => state.products);
+export default function ProductTable() {
+  const products = useSelector((state) => state.product.items);
 
   return (
-    <table border="1" cellPadding="10" style={{ marginTop: '20px' }}>
-      <thead>
-        <tr>
-          <th>Product Name</th>
-          <th>Price</th>
-          <th>Image</th>
-          <th>Category</th>
-        </tr>
-      </thead>
-      <tbody>
-        {products.length === 0 ? (
-          <tr>
-            <td colSpan="4" style={{ textAlign: 'center' }}>No products added yet</td>
-          </tr>
-        ) : (
-          products.map((product, index) => (
-            <tr key={index}>
-              <td>{product.name}</td>
-              <td>₹{product.price}</td>
-              <td><img src={product.image} alt={product.name} style={{ width: '50px' }} /></td>
-              <td>{product.category}</td>
+    <div className="product-table">
+      <h2>Product List</h2>
+      {products.length === 0 ? (
+        <p>No products added yet.</p>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Category</th>
             </tr>
-          ))
-        )}
-      </tbody>
-    </table>
+          </thead>
+          <tbody>
+            {products.map((p, index) => (
+              <tr key={index}>
+                <td><img src={p.image} alt={p.name} /></td>
+                <td>{p.name}</td>
+                <td>₹{p.price}</td>
+                <td>{p.category}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
   );
-};
-
-export default ProductTable;
+}
