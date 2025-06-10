@@ -1,16 +1,33 @@
 .product-form {
-  max-width: 400px;
+  width: 400px;
+  background: #fff;
+  padding: 20px;
   margin: auto;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
 }
-
+.product-form h2 {
+  margin-bottom: 15px;
+}
 .product-form input,
 .product-form select {
   width: 100%;
-  margin-bottom: 15px;
   padding: 8px;
+  margin-bottom: 10px;
 }
-
-.preview-image {
-  max-width: 100px;
-  margin-top: 10px;
+.product-form .error {
+  font-size: 0.875rem;
+  color: #e74c3c;
+  margin: -8px 0 8px;
+}
+.product-form button {
+  width: 100%;
+  padding: 10px;
+  background: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.product-form button:hover {
+  background: #555;
 }
